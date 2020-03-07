@@ -97,8 +97,38 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        
+        # Steps
+        # 1. Check if you can go right
+        # 2. If compare item == 1 then swap items
+        # 3. Repeat until the end
+        # 4. Check if you can go left
+        # 5. Compare and swap if necessary
+        # 6. Return sorted list
 
+    # robot_helper is used to check for next element 
+    # then comparing and swapping items if item to the
+    # left is greater than the item to the right
+    def robot_helper(self):
+        
+        # base case
+        if not self.can_move_right():
+            return 
+            
+        # check to move right
+        if self.can_move_right():
+            self.move_right()
+
+            # compare_item == 1 means that the element to the right
+            # is less than the current item, therefore we swap
+            # the items. A value of -1 means that the current 
+            # element is less than the item to the right.
+            # A value of 0 means the items are equal.
+            if self.compare_item() == 1:
+                self.swap_item()
+
+            self.robot_helper()
+        return 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
