@@ -105,16 +105,28 @@ class SortingRobot:
         # 4. Check if you can go left
         # 5. Compare and swap if necessary
         # 6. Return sorted list
+        for item in range(0, len(self._list) - 1):
+            self.swap_item()
+            self.robot_helper()
+
+            while self.can_move_left():
+                self.move_left()
+
+                if self.compare_item() == None:
+                    self.swap_item()
+                    break 
+            self.move_right()
+        return self._list
 
     # robot_helper is used to check for next element 
-    # then comparing and swapping items if item to the
-    # left is greater than the item to the right
+    # then comparing and swapping items if current item
+    # is greater than the item to the right
     def robot_helper(self):
         
         # base case
         if not self.can_move_right():
             return 
-            
+
         # check to move right
         if self.can_move_right():
             self.move_right()
@@ -129,6 +141,15 @@ class SortingRobot:
 
             self.robot_helper()
         return 
+
+# arr = [502,99,138,0,42,119,3392,1198,210,75]
+# robo = SortingRobot(arr)
+# robo.sort()
+# print(robo._list)
+# arr1 = ['Z','X','Y','A','N','V','T','a','e','Q','O','l','C','d','W','U','u','b','R','s','G','v','P','r','f','h','H']
+# robo1 = SortingRobot(arr1)
+# robo1.sort()
+# print(robo1._list)
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
